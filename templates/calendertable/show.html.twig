@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendertable{% endblock %}
+
+{% block body %}
+    <h1>Calendertable</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ calendertable.id }}</td>
+            </tr>
+         
+            <tr>
+                <th>Title</th>
+                <td>{{ calendertable.title }}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{{ calendertable.end ? calendertable.end|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ calendertable.start ? calendertable.start|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ calendertable.description }}</td>
+            </tr>
+            <tr>
+                <th>Bacgroundcouleur</th>
+                <td>{{ calendertable.bacgroundcouleur }}</td>
+            </tr>
+            <tr>
+                <th>Bordercouleur</th>
+                <td>{{ calendertable.bordercouleur }}</td>
+            </tr>
+            <tr>
+                <th>Textcouleur</th>
+                <td>{{ calendertable.textcouleur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_calendertable_index') }}">back to list</a>
+
+    <a href="{{ path('app_calendertable_edit', {'id': calendertable.id}) }}">edit</a>
+
+    {{ include('calendertable/_delete_form.html.twig') }}
+{% endblock %}

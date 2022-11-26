@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendertable index{% endblock %}
+
+{% block body %}
+    <h1>Calendertable index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+             
+                <th>Title</th>
+                <th>End</th>
+                <th>Start</th>
+                <th>Description</th>
+                <th>Bacgroundcouleur</th>
+                <th>Bordercouleur</th>
+                <th>Textcouleur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendertable in calendertables %}
+            <tr>
+                <td>{{ calendertable.id }}</td>
+             
+                <td>{{ calendertable.title }}</td>
+                <td>{{ calendertable.end ? calendertable.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendertable.start ? calendertable.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendertable.description }}</td>
+                <td>{{ calendertable.bacgroundcouleur }}</td>
+                <td>{{ calendertable.bordercouleur }}</td>
+                <td>{{ calendertable.textcouleur }}</td>
+                <td>
+                    <a href="{{ path('app_calendertable_show', {'id': calendertable.id}) }}">show</a>
+                    <a href="{{ path('app_calendertable_edit', {'id': calendertable.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_calendertable_new') }}">Create new</a>
+{% endblock %}
